@@ -68,6 +68,7 @@ $(document).ready(function() {
 	
 	function toggleMenu() {
 		console.log("click");
+		$('.logo').toggleClass('menu-open');
 		if (menuHidden) {
 			$('.pulsate').hide();
 			$('.overlay').fadeIn(500);

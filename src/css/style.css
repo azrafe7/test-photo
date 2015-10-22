@@ -235,10 +235,14 @@ a:focus {
 	opacity: .68;
 	transition: opacity .5s;
 	width: 70px;
+	cursor: pointer;
 }
 .logo:hover {
   opacity: 1;
-  cursor: pointer;
+}
+
+.menu-open {
+  opacity: .85;
 }
 
 .header-image {
