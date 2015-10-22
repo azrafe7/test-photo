@@ -69,9 +69,9 @@ $(document).ready(function() {
 	function toggleMenu() {
 		console.log("click");
 		if (menuHidden) {
-			$('.pulsate').toggle();
+			$('.pulsate').hide();
 			$('.overlay').fadeIn(500);
-		} else $('.overlay').fadeOut(500, function() { $('.pulsate').toggle(); });
+		} else $('.overlay').fadeOut(500, function() { $('.pulsate').show(); });
 		menuHidden = !menuHidden;
 	}
 	
