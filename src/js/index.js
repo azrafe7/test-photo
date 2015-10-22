@@ -154,9 +154,9 @@ $(document).ready(function() {
 	//delete Hammer.defaults.cssProps.userSelect;
 	var hammer = new Hammer($elmt.get(0));
 	hammer.on('swipeleft swiperight', function(e) {
-		if (e.type == 'swipeleft')
+		if (e.type == 'swiperight')
 			prev();
-		else if (e.type == 'swiperight')
+		else if (e.type == 'swipeleft')
 			next();
 	});
 });
