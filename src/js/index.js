@@ -25,7 +25,7 @@ $(document).ready(function() {
 	var overlay = isMobile() ? false : 'js/vegas/overlays/overlay.png';
 	
 	var slides = [
-		{ src: "photo/slide00.jpg" },
+		//{ src: "photo/slide00.jpg" },
 		{ src: "photo/slide01.jpg" },
 		{ src: "photo/slide02.jpg" },
 		{ src: "photo/slide03.jpg" },
