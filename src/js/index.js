@@ -63,15 +63,15 @@ $(document).ready(function() {
 	
 	// toggle menu
 	var menuHidden = true;
-	$('.menu.overlay').hide();
+	$('.overlay').hide();
 	$(".logo").on('click', toggleMenu);
 	
 	function toggleMenu() {
 		console.log("click");
 		if (menuHidden) {
 			$('.pulsate').toggle();
-			$('.menu.overlay').fadeIn(500);
-		} else $('.menu.overlay').fadeOut(500, function() { $('.pulsate').toggle(); });
+			$('.overlay').fadeIn(500);
+		} else $('.overlay').fadeOut(500, function() { $('.pulsate').toggle(); });
 		menuHidden = !menuHidden;
 	}
 	
