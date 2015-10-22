@@ -114,6 +114,7 @@ $(document).ready(function() {
 		$(".menu .social li:eq(" + 1 + ") a").css("color", arrayToRGB(slide.palette[1]));
 		$(".menu .social li:eq(" + 2 + ") a").css("color", arrayToRGB(slide.palette[3]));*/
 		
+		setCoverModeFor(idx + 1);
 	});
 	
 	
@@ -150,7 +151,7 @@ $(document).ready(function() {
 	
 	// create a simple instance
 	// by default, it only adds horizontal recognizers
-	delete Hammer.defaults.cssProps.userSelect;
+	//delete Hammer.defaults.cssProps.userSelect;
 	var hammer = new Hammer($elmt.get(0));
 	hammer.on('swipeleft swiperight', function(e) {
 		if (e.type == 'swipeleft')
