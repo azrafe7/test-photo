@@ -153,7 +153,9 @@ $(document).ready(function() {
 	// by default, it only adds horizontal recognizers
 	//delete Hammer.defaults.cssProps.userSelect;
 	var hammer = new Hammer($elmt.get(0));
+	hammer.get('swipe').set({velocity:.2});
 	hammer.on('swipeleft swiperight', function(e) {
+		//console.log(e.type);
 		if (e.type == 'swiperight')
 			prev();
 		else if (e.type == 'swipeleft')
