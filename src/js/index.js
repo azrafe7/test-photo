@@ -1,3 +1,9 @@
+//TODO:
+// - expose _extended_ settings (first slide, shuffle, transition, duration, etc.)
+// - shuffle slides manually (if needed)
+// - load the first and set cover mode
+// - store cover mode in settings
+
 // http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
 function shadeBlend(p,c0,c1) {
     var n=p<0?p*-1:p,u=Math.round,w=parseInt;
@@ -80,8 +86,6 @@ $(document).ready(function() {
 		menuHidden = !menuHidden;
 	}
 	
-	debug("first slide is ", slides[$elmt.vegas('current')]);
-	
 	// calc palettes while loading images
 	var paletteSize = 4;
 	var colorThief = new ColorThief();
@@ -94,19 +98,18 @@ $(document).ready(function() {
 				slides[curr].palette = palette;
 				slides[curr].size = {w:this.width, h:this.height};
 				$elmt.vegas('options', 'slides', slides);
-				if (curr == 0) {
-					debug("curr == 0");
-					setCoverModeFor(0);
-				}
 			}
 		})(i);
 		img.src = slides[i].src;
 	}
 	
+	debug("first slide is ", slides[$elmt.vegas('current')]);
+	
 	// set colors when changing slide
 	$elmt.vegas('options', 'walk', function (idx, slideSettings) {
 		
 		var slide = slides[idx];
+		
 		$elmt.find(".vegas-timer .vegas-timer-progress").css("background-color", arrayToRGB(slide.palette[0]));
 		$(".site-title span").stop().animate({color: arrayToRGB(slide.palette[2])}, 1500);
 		if ($("#palette div").length == 0) {
