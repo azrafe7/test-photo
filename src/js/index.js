@@ -108,14 +108,14 @@ $(document).ready(function() {
 		
 		var slide = slides[idx];
 		$elmt.find(".vegas-timer .vegas-timer-progress").css("background-color", arrayToRGB(slide.palette[0]));
-		$(".site-title span").animate({color: arrayToRGB(slide.palette[2])}, 1500);
+		$(".site-title span").stop().animate({color: arrayToRGB(slide.palette[2])}, 1500);
 		if ($("#palette div").length == 0) {
 			for (i = 0; i < slide.palette.length; i++) {
 				$("<div>").appendTo("#palette");
 			}
 		}
 		for (i = 0; i < slide.palette.length; i++) {
-			$("#palette div:eq(" + i + ")").animate({backgroundColor: arrayToRGB(slide.palette[i])}, 1500);
+			$("#palette div:eq(" + i + ")").stop().animate({backgroundColor: arrayToRGB(slide.palette[i])}, 1500);
 		}
 		/*$(".menu .social li:eq(" + 0 + ") a").css("color", arrayToRGB(slide.palette[0]));
 		$(".menu .social li:eq(" + 1 + ") a").css("color", arrayToRGB(slide.palette[1]));
