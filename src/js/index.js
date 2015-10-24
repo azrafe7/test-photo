@@ -20,8 +20,13 @@ function arrayToRGB(arr) {
 
 $(document).ready(function() {
 
+	var isDebug = true; // toggle this to turn on / off for debug
+	if (isDebug) var debug = console.log.bind(window.console)
+	else var debug = function(){};
+
 	var $elmt = $("#content");
 	
+	// don't use overlay on mobiles
 	var overlay = isMobile() ? false : 'js/vegas/overlays/overlay.png';
 	
 	var slides = [
@@ -65,9 +70,8 @@ $(document).ready(function() {
 	var menuHidden = true;
 	$('.overlay').hide();
 	$(".logo").on('click', toggleMenu);
-	
 	function toggleMenu() {
-		console.log("click");
+		debug("toggle menu");
 		$('.logo').toggleClass('menu-open');
 		if (menuHidden) {
 			$('.pulsate').hide();
@@ -76,7 +80,9 @@ $(document).ready(function() {
 		menuHidden = !menuHidden;
 	}
 	
-	// precalc timer color
+	debug("first slide is ", slides[$elmt.vegas('current')]);
+	
+	// calc palettes while loading images
 	var paletteSize = 4;
 	var colorThief = new ColorThief();
 	for (i = 0; i < slides.length; i++) {
@@ -88,17 +94,17 @@ $(document).ready(function() {
 				slides[curr].palette = palette;
 				slides[curr].size = {w:this.width, h:this.height};
 				$elmt.vegas('options', 'slides', slides);
+				if (curr == 0) {
+					debug("curr == 0");
+					setCoverModeFor(0);
+				}
 			}
 		})(i);
 		img.src = slides[i].src;
 	}
 	
-	var currIdx = 0;
-	
-	// set colors
+	// set colors when changing slide
 	$elmt.vegas('options', 'walk', function (idx, slideSettings) {
-		//hack
-		//setCoverModeFor(idx);
 		
 		var slide = slides[idx];
 		$elmt.find(".vegas-timer .vegas-timer-progress").css("background-color", arrayToRGB(slide.palette[0]));
@@ -118,24 +124,26 @@ $(document).ready(function() {
 		setCoverModeFor(idx + 1);
 	});
 	
-	
+	// set cover mode for the specified slide index
 	function setCoverModeFor(idx) {
 		var slide = slides[(idx) % slides.length];
-		console.log(slide);
+		debug("set cover for " + idx, slide);
 		if (slide && slide.size) {
 			var ratio = slide.size.w / slide.size.h;
 			$elmt.vegas('options', 'cover', ratio >= 1);
-			console.log([idx, slide]);
+			debug([idx, slide]);
 		}
 		else $elmt.vegas('options', 'cover', true);
 	}
 	
+	// next slide
 	function next() {
 		var succIdx = $elmt.vegas('current') + 1;
 		setCoverModeFor(succIdx);
 		$elmt.vegas('next');
 	}
 	
+	// prev slide
 	function prev() {
 		var succIdx = $elmt.vegas('current') - 1;
 		setCoverModeFor(succIdx);
@@ -150,13 +158,13 @@ $(document).ready(function() {
 			next();
 	});
 	
-	// create a simple instance
+	// create a simple instance of Hammer
 	// by default, it only adds horizontal recognizers
 	//delete Hammer.defaults.cssProps.userSelect;
 	var hammer = new Hammer($elmt.get(0));
 	hammer.get('swipe').set({velocity:.2});
 	hammer.on('swipeleft swiperight', function(e) {
-		//console.log(e.type);
+		//debug(e.type);
 		if (e.type == 'swiperight')
 			prev();
 		else if (e.type == 'swipeleft')
