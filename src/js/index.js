@@ -129,7 +129,8 @@ $(document).ready(function() {
 	
 	// set cover mode for the specified slide index
 	function setCoverModeFor(idx) {
-		var slide = slides[(idx) % slides.length];
+		idx = (idx + slides.length) % slides.length;
+		var slide = slides[idx];
 		debug("set cover for " + idx, slide);
 		if (slide && slide.size) {
 			var ratio = slide.size.w / slide.size.h;
