@@ -1,8 +1,4 @@
 <!--DOCTYPE html-->
-<!--[if (IE lt 9) ]>
-<html id="ie8-">
-<div style="text-align: center" class="label label-important IE-warning">Stai usando una vecchia versione di Internet Explorer. Ti consigliamo di <a href="http://browser-update.org/update-browser.html">aggiornarlo o di scegliere un altro browser</a> per vedere correttamente questo sito.</div>
-<![endif]-->
 <html>
 	<head>
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
@@ -39,6 +35,10 @@
 		
 		<title>Adriano Nicastro - photography</title>
 		
+		<!--[if lt IE 9]>
+		<script src="js/html5-shiv/html5shiv.min.js"></script>
+		<![endif]-->
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="js/vegas/vegas.min.js"></script>
 		<script src="js/screenfull/screenfull.min.js"></script>
@@ -49,6 +49,10 @@
 	</head>
 	<body>
 
+		<!--[if lt IE 9]>
+		<div style="text-align: center" class="label label-important IE-warning">Stai usando una vecchia versione di Internet Explorer. Ti consigliamo di <a href="http://browser-update.org/update-browser.html">aggiornarlo o di scegliere un altro browser</a> per vedere correttamente questo sito.</div>
+		<![endif]-->
+		
 		<!--nav id="navigation">
 			<span id="left">prev</span>
 			<span id="fullscreen">full</span>

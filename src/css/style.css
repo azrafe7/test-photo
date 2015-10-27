@@ -217,9 +217,12 @@ a:focus {
 	padding-top: 4px;
 	margin-bottom: 30px;
 }
-.IE-warning a {
-	color:orange !important;
+.IE-warning a, .IE-warning a:visited {
+	color:#f04010;
 	font-weight:bold;
+}
+.IE-warning a:hover {
+	color:#ff5010;
 }
 
 .menu.overlay {
