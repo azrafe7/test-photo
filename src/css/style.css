@@ -199,6 +199,29 @@ a:focus {
   outline-offset: -2px;
 }
 
+/* IE <= 8 warning message */
+.IE-warning {
+	font-size: .8em;
+	font-family: sans-serif;
+	background: #ffffc0;
+	border-bottom: 1px solid #555;
+	color: #000000;
+	position:fixed;
+	_position:absolute;
+	top:0;
+	left:0;
+	_top:expression(eval(document.body.scrollTop));
+	width: 100%;
+	z-index: 99999999;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	margin-bottom: 30px;
+}
+.IE-warning a {
+	color:orange !important;
+	font-weight:bold;
+}
+
 .menu.overlay {
 	overflow: hidden;
 }
