@@ -160,6 +160,16 @@ $(document).ready(function() {
 			prev();
 		else if (e.which == 39) // right
 			next();
+		else {
+			debug(e.which);
+			if (e.which == 32) {
+				debug("toggle overlay");
+				var $overlay = $elmt.find('.vegas-overlay');
+				var visible = $overlay.css('display') != 'none';
+				$overlay.css('display', (visible ? 'none' : 'inline-block'));
+				e.preventDefault();
+			}
+		}
 	});
 	
 	// create a simple instance of Hammer
