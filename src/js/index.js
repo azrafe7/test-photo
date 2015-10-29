@@ -169,6 +169,12 @@ $(document).ready(function() {
 				$overlay.css('display', (visible ? 'none' : 'inline-block'));
 				e.preventDefault();
 			}
+			if (e.which == 77) {
+				debug("toggle animation");
+				var animation = $elmt.vegas('options', 'animation');
+				$elmt.vegas('options', 'animation', animation == 'random' ? null : 'random');
+				next();
+			}
 		}
 	});
 	
