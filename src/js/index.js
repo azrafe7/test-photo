@@ -72,6 +72,11 @@ $(document).ready(function() {
 		}*/
 	});
 	
+	// split .site-title h1 initials into spans
+	var $author = $('h1.site-title a');
+	var withSpanInitials = $author.text().replace((/\b\w/g),"<span>$&</span>");
+	$author.html(withSpanInitials);
+	
 	// toggle menu
 	var menuHidden = true;
 	$('.overlay').hide();
