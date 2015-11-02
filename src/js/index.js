@@ -110,6 +110,12 @@ $(document).ready(function() {
 	
 	debug("first slide is ", slides[$elmt.vegas('current')]);
 	
+	// random photos from flickr
+	var loremFlickrUrl = "http://loremflickr.com/800/600/world?random=";
+	for (i = 0; i < slides.length; i++) {
+		slides[i].src = loremFlickrUrl + (i + 1);
+	}
+	
 	// set colors when changing slide
 	$elmt.vegas('options', 'walk', function (idx, slideSettings) {
 		
