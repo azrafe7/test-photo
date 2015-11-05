@@ -44,7 +44,7 @@ $(document).ready(function() {
 		//{ src: "photo/slide00.jpg" },
 		{ src: "photo/slide01.jpg" },
 		{ src: "photo/slide02.jpg" },
-/*		{ src: "photo/slide03.jpg" },
+		{ src: "photo/slide03.jpg" },
 		{ src: "photo/slide04.jpg" },
 		{ src: "photo/slide06.jpg" },
 		{ src: "photo/slide07.jpg" },
@@ -56,19 +56,19 @@ $(document).ready(function() {
 		{ src: "photo/slide13.jpg" },
 		{ src: "photo/slide14.jpg" },
 		{ src: "photo/slide15.jpg" },
-		{ src: "photo/slide16.jpg" },*/
+		{ src: "photo/slide16.jpg" },
 	];
 
 	var vegasSettings = {
 		delay: 7000,
 		timer: true,
-		//overlay: false,
+		//preload: true,
 		overlay: overlay,
 		cover: true,
-		//shuffle: true,
+		shuffle: true,
 		transition: ['fade2', 'fade'],
 		transitionDuration: 3000,
-		animation: 'random',
+		//animation: 'random',
 	};
 	
 	
@@ -91,6 +91,7 @@ $(document).ready(function() {
 		menuHidden = !menuHidden;
 	}
 	
+
 	// random photos from flickr
 	/*var loremFlickrUrl = "http://loremflickr.com/800/600/world?random=";
 	for (i = 0; i < slides.length; i++) {
@@ -101,15 +102,11 @@ $(document).ready(function() {
 		
 		// next slide
 		function next() {
-			var succIdx = $elmt.vegas('current') + 1;
-			//setCoverModeFor(succIdx);
 			$elmt.vegas('next');
 		}
 		
 		// prev slide
 		function prev() {
-			var succIdx = $elmt.vegas('current') - 1;
-			//setCoverModeFor(succIdx);
 			$elmt.vegas('previous');
 		}
 		
@@ -141,6 +138,11 @@ $(document).ready(function() {
 					debug("restart");
 					$elmt.vegas('destroy');
 					startGallery(vegasSettings, slides);
+				}
+				if (e.which == 67) { // c
+					vegasSettings.cover = (vegasSettings.cover === 'auto' ? true : 'auto');
+					debug("toggle cover mode", vegasSettings.cover, $elmt.vegas('options', 'cover'));
+					next();
 				}
 			}
 		});
@@ -177,13 +179,10 @@ $(document).ready(function() {
 		idx = (idx + slides.length) % slides.length;
 		var slide = slides[idx];
 		var res = vegasSettings.cover;
-		if (slide && slide.size) {
-			//var ratio = slide.size.w / slide.size.h;
-			//$elmt.vegas('options', 'cover', ratio >= 1);
+		if (vegasSettings.cover === 'auto' && slide && slide.size) {
 			var ratio = slide.size.w / slide.size.h;
 			res = ratio >= 1;
 		}
-		//else $elmt.vegas('options', 'cover', true);
 		debug("get cover for " + idx, slide, res);
 		return res;
 	}
@@ -200,42 +199,40 @@ $(document).ready(function() {
 	function onBeforeWalk(idx, img) { 
 		debug("beforeWalk", idx, img, img.width, img.height); 
 		if (!slides[idx].size) slides[idx].size = {w:img.width, h:img.height};
-		if (!slides[idx].palette) slides[idx].palette = colorThief.getPalette(img, paletteSize);
+		try {
+			if (!slides[idx].palette) slides[idx].palette = colorThief.getPalette(img, paletteSize);
+		} catch (e) {
+			debug(e);
+		}
 		setCoverModeFor(idx);
 	}
 	
 	function startGallery(options, slides) {
 
-		var img = new Image();
-		//img.onload = function() {
-		{
-			
-			debug("start gallery");
-			$.extend(options, {slides: slides});
-			/*onBeforeWalk(0, this);
-			options.cover = getCoverModeFor(0);
-			*/
-			
-			// vegas
-			debug(options);
-			$elmt.vegas(options)
-			.on('click', function() { 	// fullscreen toggle
-				$elmt.vegas('toggle');
-				/*if (screenfull.enabled) {
-					screenfull.toggle(this);
-				}*/
-			});
+		debug("start gallery");
+		$.extend(options, {slides: slides});
 		
-			$elmt.vegas('options').beforeWalk = onBeforeWalk;
+		// vegas
+		debug(options);
+		$elmt.vegas(options)
+		.on('click', function() { 	// fullscreen toggle
+			//$elmt.vegas('toggle');
+			/*if (screenfull.enabled) {
+				screenfull.toggle(this);
+			}*/
+		});
+	
+		$elmt.vegas('options').beforeWalk = onBeforeWalk;
+		
+		debug("first slide is ", slides[0]);
+		
+		// set colors when changing slide
+		$elmt.vegas('options', 'walk', function (idx, slideSettings, fromIdx) {
 			
-			debug("first slide is ", slides[0]);
+			debug('walk', idx, slideSettings, fromIdx);
+			var slide = slides[idx];
 			
-			// set colors when changing slide
-			$elmt.vegas('options', 'walk', function (idx, slideSettings, fromIdx) {
-				
-				debug('walk', idx, slideSettings, fromIdx);
-				var slide = slides[idx];
-				
+			if (slide.palette) {
 				$elmt.find(".vegas-timer .vegas-timer-progress").css("background-color", arrayToRGB(slide.palette[0]));
 				$(".site-title span").stop().animate({color: arrayToRGB(slide.palette[2])}, 1500);
 				if ($("#palette div").length == 0) {
@@ -246,31 +243,9 @@ $(document).ready(function() {
 				for (i = 0; i < slide.palette.length; i++) {
 					$("#palette div:eq(" + i + ")").stop().animate({backgroundColor: arrayToRGB(slide.palette[i])}, 1500);
 				}
-				/*$(".menu .social li:eq(" + 0 + ") a").css("color", arrayToRGB(slide.palette[0]));
-				$(".menu .social li:eq(" + 1 + ") a").css("color", arrayToRGB(slide.palette[1]));
-				$(".menu .social li:eq(" + 2 + ") a").css("color", arrayToRGB(slide.palette[3]));*/
-				
-				//setCoverModeFor(idx + 1);
-				//if (idx == 1) $elmt.vegas('options', 'transition', transition);
-			});
-			
-		}
-		//img.src = slides[0].src;
-	}
-	
-	/*for (i = 0; i < slides.length; i++) {
-		var img = new Image();
-		var curr = i;
-		img.onload = (function(curr) {
-			return function() {
-				var palette = colorThief.getPalette(this, paletteSize);
-				slides[curr].palette = palette;
-				slides[curr].size = {w:this.width, h:this.height};
-				$elmt.vegas('options', 'slides', slides);
 			}
-		})(i);
-		img.src = slides[i].src;
-	}*/
+		});
+	}
 	
 	addEventListeners();
 	startGallery(vegasSettings, slides);
