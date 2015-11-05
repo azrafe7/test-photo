@@ -24,16 +24,16 @@
     bottom: 0;
     height: 2px;
 }
-.vegas-timer-progress {
-	width: 0%;
-	height: 100%;
-	background: white;
-	-webkit-transition: width ease-out;
-	transition: width ease-out;
-}
-.vegas-timer-running .vegas-timer-progress {
-	width: 100%;
-}
+    .vegas-timer-progress {
+        width: 0%;
+        height: 100%;
+        background: white;
+        -webkit-transition: width ease-out;
+                transition: width ease-out;
+    }
+        .vegas-timer-running .vegas-timer-progress {
+            width: 100%;
+        }
 
 .vegas-slide,
 .vegas-slide-inner {
