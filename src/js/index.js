@@ -41,9 +41,9 @@ $(document).ready(function() {
 
 
 	var slides = [
-		//{ src: "photo/slide00.jpg" },
+		{ src: "photo/slide00.jpg" },
 		{ src: "photo/slide01.jpg" },
-		{ src: "photo/slide02.jpg" },
+		/*{ src: "photo/slide02.jpg" },
 		{ src: "photo/slide03.jpg" },
 		{ src: "photo/slide04.jpg" },
 		{ src: "photo/slide06.jpg" },
@@ -56,7 +56,7 @@ $(document).ready(function() {
 		{ src: "photo/slide13.jpg" },
 		{ src: "photo/slide14.jpg" },
 		{ src: "photo/slide15.jpg" },
-		{ src: "photo/slide16.jpg" },
+		{ src: "photo/slide16.jpg" },*/
 	];
 
 	var vegasSettings = {
@@ -118,6 +118,10 @@ $(document).ready(function() {
 				next();
 			else {
 				debug(e.which);
+				if (e.which == 13) { // enter
+					debug("pause/unpause");
+					$elmt.vegas('toggle');
+				}
 				if (e.which == 32) { // space
 					debug("toggle overlay");
 					var $overlay = $elmt.find('.vegas-overlay');
