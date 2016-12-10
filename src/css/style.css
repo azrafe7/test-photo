@@ -15,11 +15,18 @@
 }
 .social li {
 	display: inline-block;
-	margin: 1px;
+	margin: 2px;
+	margin-top: -4px;
+	padding: 2px;
 	text-align: center;
 	border-radius:50%;
-	border: 2px solid;
+	border: 3px solid;
+	transition: all .1s ease-in-out;
 }
+.social li:hover {
+	transform: scale(1.2);
+}
+
 .social a {
 	display: block;
 	height: 36px;
@@ -28,11 +35,10 @@
 	color: #969696;
 	text-align: center;
 	border-radius:50%;
-	transition: all .2s ease-in-out;
+	/*transition: all .2s ease-in-out;*/
 }
 .social a:hover {	
 	text-decoration: none;
-	transform: scale(1.1);
 }
 .social a:before {
 	font-family: "Genericons";
