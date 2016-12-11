@@ -1,0 +1,29 @@
+[
+  {
+    "location": {
+      "city": "San Francisco",
+      "state": "California",
+      "citystate": "San Francisco, California"
+    },
+    "pets": [
+      {
+        "type": "dog",
+        "name": "Spot",
+        "fixed": true
+      },
+      {
+        "type": "cat",
+        "name": "Whiskers",
+        "fixed": false
+      }
+    ],
+    "name": "John Smith",
+    "age": 35,
+    "gender": "male"
+  },
+  {
+    "name": "123",
+    "age": 21,
+    "gender": "male"
+  }
+]
