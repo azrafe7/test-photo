@@ -1,0 +1,27 @@
+{
+	"firstGallery": "gallery1",
+	
+	"galleries": {
+		"gallery1": {
+			"firstSlide": 0,
+			"random": true,
+			"slides": [
+				{ "src": "photo/slide01.jpg" },
+				{ "src": "photo/slide02.jpg" },
+				{ "src": "photo/slide03.jpg" },
+				{ "src": "photo/slide04.jpg" },
+				{ "src": "photo/slide06.jpg" },
+				{ "src": "photo/slide07.jpg" },
+				{ "src": "photo/slide08.jpg" },
+				{ "src": "photo/slide09.jpg" },
+				{ "src": "photo/slide10.jpg" },
+				{ "src": "photo/slide11.jpg" },
+				{ "src": "photo/slide12.jpg" },
+				{ "src": "photo/slide13.jpg" },
+				{ "src": "photo/slide14.jpg" },
+				{ "src": "photo/slide15.jpg" },
+				{ "src": "photo/slide16.jpg" }
+			]
+		}
+	}
+}
