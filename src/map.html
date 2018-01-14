@@ -1,0 +1,248 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title></title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+
+    <script type="text/javascript">
+        var map;
+        function initialize(){
+            google.maps.visualRefresh = true;
+
+            var coords = new google.maps.LatLng(40.833965, 15.074466);
+			map = new google.maps.Map(document.getElementById('map_canvas'), {
+				zoom: 16,
+				center: coords,
+				/*mapTypeId: google.maps.MapTypeId.ROADMAP,
+				mapTypeControl: false,
+				zoomControl: true,
+				zoomControlOptions: {
+					style: google.maps.ZoomControlStyle.LARGE
+				},
+				scaleControl: false,
+				rotateControl: false,
+				panControl: false*/
+			});
+			
+			var marker = new google.maps.Marker({
+				position: coords,
+				map: map,
+				title: 'Tooltip'
+			});
+
+			var infoString = $('#infobox-content').html();
+			var infoBox = new google.maps.InfoWindow({
+				content: infoString
+			});
+
+			marker.addListener('click', function() {
+				infoBox.open(map, marker);
+			});
+
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+	<div class=".hidden-box" style="max-width:460px">
+	<div id="infobox-content">
+	<p><b>Adriano Nicastro - Studio Fotografico</b></p>
+	<p>Via Giustino Fortunato, 83043 Bagnoli Irpino</p>
+	<p style="text-align:center"><a href="https://www.google.com/maps/@40.8339599,15.0700986,16z/data=!4m2!6m1!1s17nFl-FcJXNcTzJOqfh5ScC6Tgttwt9dF" target="_blank">apri in Google Maps</a></p>
+	</div>
+	</div>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+   /*** SIDE BAR**/
+
+        #wrapper {
+            padding-left: 0;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper{
+            padding-right: 250px;
+        }
+        #sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            right: 0px;
+            width: 0;
+            height: 100%;
+            overflow-y: auto;
+            background: #0000ff;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper.toggled #sidebar-wrapper {
+            width: 250px;
+        }
+        #page-content-wrapper {
+            width: 100%;
+            padding: 15px;
+        }
+        #wrapper.toggled #page-content-wrapper {
+            position: absolute;
+        }
+        /* Sidebar Styles */
+
+
+        #wrapper {
+            padding-right: 250px;
+        }
+        #wrapper.toggled {
+            padding-right: 0;
+        }
+        #sidebar-wrapper {
+            width: 250px;
+        }
+        #wrapper.toggled #sidebar-wrapper {
+            width: 0;
+        }
+        #page-content-wrapper {
+            padding: 20px;
+        }
+        #wrapper.toggled #page-content-wrapper {
+            position: relative;
+            margin-right: 0;
+        }
+
+
+/****** ENS SIDE BAR *****/
+
+
+
+
+
+
+        /** bottom bar**/
+
+
+        #wrapper {
+            padding-bottom: 0;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper{
+            padding-bottom: 0px;
+        }
+
+
+
+
+
+
+        #bottom-wrapper {
+
+            background-color:#000;
+            border: 1px solid #98c0f4;
+            /* z-index: 1000;*/
+            position: fixed;
+            width:97.5%;/*if sidebar  width must 79% */
+            height:250px;
+            bottom:0;
+            left:0;
+            right:0;
+            transition: height 1s ease;
+            -moz-transition: height 1s ease;
+            -webkit-transition: height 1s ease;
+
+
+        }
+        #wrapper.toggledbottom #bottom-wrapper {
+
+            height:50px;
+            width: 97.5%;
+
+        }
+        #page-content-wrapper {
+            width: 100%;
+            padding: 15px;
+        }
+        #wrapper.toggledbottom #page-content-wrapper {
+            position: relative;
+        }
+
+
+
+        #page-content-wrapper {
+            padding: 20px;
+        }
+        #wrapper.toggledbottom #page-content-wrapper {
+            position: relative;
+            margin-bottom: 0;
+        }
+
+
+        /*** End bottom bar**/
+
+    </style>
+</head>
+
+<body >
+<div id="wrapper" class="toggled toggledbottom">
+    <!-- Sidebar -->
+    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+    <div id="sidebar-wrapper"> </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div id="map_canvas" style="height:600px; width: 100%;"></div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <!-- Bottom -->
+
+    <div id="bottom-wrapper"> <a href="#bottom-toggle" class="btn btn-default" id="bottom-toggle">show bottom</a></div>
+</div>
+<!-- /#wrapper -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $("#bottom-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggledbottom");
+    });
+ </script>
+ </body>
+ </html>
