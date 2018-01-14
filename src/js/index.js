@@ -282,7 +282,8 @@ $(document).ready(function () {
 	var paletteSize = 4;
 	var paletteQuality = undefined;
 	var colorThief = new ColorThief();
-	var usePalette = urlParamToBool(urlParams, 'palette', true);
+	var usePalette = urlParams['palette'] == 'recalc' ? 'recalc' : urlParamToBool(urlParams, 'palette', true);
+	if (urlParams['palette'] == 'recalc') preCalcedPalettes = [];
 	for (var i = 0; i < slides.length; i++) {
 		var img = new Image();
 		var curr = i;
