@@ -174,7 +174,14 @@ $(document).ready(function () {
 	// photo overlay & animation
 	var overlay = urlParamToBool(urlParams, 'overlay', false);
 	var animation = urlParamToBool(urlParams, 'animation', false) ? 'random' : false;
-
+	if (animation) animation = [
+		'customKenburns',
+		'kenburns',
+		'kenburnsLeft', 'kenburnsRight',
+		'kenburnsUp', 'kenburnsUpLeft', 'kenburnsUpRight',
+		'kenburnsDown', 'kenburnsDownLeft', 'kenburnsDownRight'
+	];
+	
 	if (debugMode) {
 		debug = console.log.bind(window.console);
 	} else
@@ -227,9 +234,9 @@ $(document).ready(function () {
 		slides = slides.slice(0, parseInt(urlParams['n']));
 	}
 	debug('shuffled', slides.map(function (item, i) {
-			return item.src.split('/').pop();
-		}));
-
+		return item.src.split('/').pop();
+	}));
+	
 	// vegas
 	$elmt.vegas({
 		delay: 7000,
@@ -334,6 +341,9 @@ $(document).ready(function () {
 	debug("first slide is ", slides[$elmt.vegas('current')], "n", nFirstSlides);
 
 	// set colors when changing slide
+	var firstSlideEver = true;
+	$elmt.vegas('options', 'animation', null); // no animation for first slide ever
+	
 	$elmt.vegas('options', 'walk', function (idx, slideSettings) {
 
 		// make download button visible
@@ -344,6 +354,13 @@ $(document).ready(function () {
 			$('#help-controls').css('visibility', 'initial').show().hide().fadeIn(3000); //css('visibility', 'initial');
 		}
 
+		// reset animation after first slide
+		if (firstSlideEver) {
+			debug(animation);
+			$elmt.vegas('options', 'animation', animation);
+			firstSlideEver = false;
+		}
+		
 		var slide = slides[idx];		var filepath = slide.src.split('/');		var filename = filepath.pop();		filepath = filepath.join('/');		// help controls
 		$('#help-controls .slide-idx').text(idx + '/' + (slides.length - 1));
 		$('#help-controls .slide-name').text(':' + filename);
