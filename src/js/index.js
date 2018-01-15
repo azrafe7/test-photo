@@ -174,13 +174,14 @@ $(document).ready(function () {
 	// photo overlay & animation
 	var overlay = urlParamToBool(urlParams, 'overlay', false);
 	var animation = urlParamToBool(urlParams, 'animation', false) ? 'random' : false;
-	if (animation) animation = [
+	var randomAnimations = [
 		'customKenburns',
 		'kenburns',
 		'kenburnsLeft', 'kenburnsRight',
 		'kenburnsUp', 'kenburnsUpLeft', 'kenburnsUpRight',
 		'kenburnsDown', 'kenburnsDownLeft', 'kenburnsDownRight'
 	];
+	if (animation) animation = randomAnimations;
 	
 	if (debugMode) {
 		debug = console.log.bind(window.console);
@@ -460,8 +461,8 @@ $(document).ready(function () {
 			}
 			if (e.which == 65) { // 'a' animation
 				debug("toggle animation");
-				var animation = $elmt.vegas('options', 'animation');
-				$elmt.vegas('options', 'animation', animation == 'random' ? null : 'random');
+				var currAnimation = $elmt.vegas('options', 'animation');
+				$elmt.vegas('options', 'animation', currAnimation ? null : randomAnimations);
 				next();
 			}
 			if (e.which == 77) { // 'm' toggle map
