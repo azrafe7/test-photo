@@ -170,18 +170,23 @@ $(document).ready(function () {
 	var urlParams = parseQueryString(location.search.substr(1));
 	console.info("urlParams", urlParams);
 
+	if (urlParamToBool(urlParams, 'noui', false)) {
+		$('.site-branding, #footer, #top-buttons').css('display', 'none');
+	}
+	
 	debugMode = urlParamToBool(urlParams, 'debug', debugMode);
-	// photo overlay & animation
+	
+	// photo overlay & animations
 	var overlay = urlParamToBool(urlParams, 'overlay', false);
-	var animation = urlParamToBool(urlParams, 'animation', false) ? 'random' : false;
-	var randomAnimations = [
-		'customKenburns',
+	var kenburns = [
 		'kenburns',
 		'kenburnsLeft', 'kenburnsRight',
 		'kenburnsUp', 'kenburnsUpLeft', 'kenburnsUpRight',
 		'kenburnsDown', 'kenburnsDownLeft', 'kenburnsDownRight'
 	];
-	if (animation) animation = randomAnimations;
+	var invertedKenburns = kenburns.map(function (name) { return name + '-in'; });
+	var randomAnimations = invertedKenburns;
+	var animation = urlParamToBool(urlParams, 'animation', false) ? randomAnimations : false;
 	
 	if (debugMode) {
 		debug = console.log.bind(window.console);
@@ -254,7 +259,7 @@ $(document).ready(function () {
 		screenfull.toggle(this);
 		}*/
 	});
-
+	
 	// hide vegas timer if only 1 slide
 	if (slides.length <= 1) $(".vegas-timer").addClass("hidden");
 	
