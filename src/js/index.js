@@ -421,7 +421,7 @@ $(document).ready(function () {
 		debug("set cover for " + idx, slide);
 		if (slide && slide.size) {
 			var ratio = slide.size.w / slide.size.h;
-			$elmt.vegas('options', 'cover', ratio >= 1);
+			$elmt.vegas('options', 'cover', ratio > 1);
 		} else
 			$elmt.vegas('options', 'cover', true);
 	}
