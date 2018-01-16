@@ -185,7 +185,7 @@ $(document).ready(function () {
 		'kenburnsDown', 'kenburnsDownLeft', 'kenburnsDownRight'
 	];
 	var invertedKenburns = kenburns.map(function (name) { return name + '-in'; });
-	var randomAnimations = invertedKenburns;
+	var randomAnimations = kenburns.concat(invertedKenburns);
 	var animation = urlParamToBool(urlParams, 'animation', false) ? randomAnimations : false;
 	
 	if (debugMode) {
@@ -250,7 +250,7 @@ $(document).ready(function () {
 		overlay: true, // but starts hidden
 		cover: true,
 		shuffle: false, // done manually
-		transition: ['fade2', 'fade'],
+		transition: ['fade2'], // fade2 has an out transition, while fade has not
 		transitionDuration: 3000,
 		animation: animation,
 		slides: slides,
