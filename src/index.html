@@ -127,7 +127,7 @@
 			function initMap(){
 				google.maps.visualRefresh = true;
 
-				coords = new google.maps.LatLng(40.833965, 15.074466);
+				coords = new google.maps.LatLng(40.833965, 15.074466); // studio coords
 				map = new google.maps.Map(document.getElementById('map'), {
 					zoom: 17,
 					center: coords,
@@ -210,6 +210,15 @@
 					<span class="key">[</span><span class='key slide-idx'></span><span class="key">]</span><span class='slide-name'></span>
 				</span>
 				<span id="copyright">Copyright © 2015-2020 Adriano Nicastro.</span>
+        <!-- LocalBusiness microdata -->
+        <div id="local-business" itemscope itemtype="http://schema.org/LocalBusiness">
+          <span itemprop="image">images/profile_image.jpg</span>
+          <span itemprop="name">Adriano Nicastro - Studio Fotografico</span>
+          <span itemprop="address">via Giustino Fortunato, 84043 Bagnoli Irpino (AV)</span>
+          <span itemprop="latitude">40.833965</span>
+          <span itemprop="longitude">15.074466</span>
+          <span itemprop="telephone">+39 328 625 6625</span>
+        </div>
 			</div>
 			<div id="outer-header">Studio Fotografico</div>
 			<div id="inner-header">Via Giustino Fortunato, 83043 Bagnoli Irpino</div>
