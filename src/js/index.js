@@ -174,7 +174,10 @@ $(document).ready(function () {
 		$('.site-branding, #footer, #top-buttons').css('display', 'none');
 	}
 	
-	if (urlParamToBool(urlParams, 'nocontrols', false) || isMobile()) {
+	var kioskMode = urlParamToBool(urlParams, 'kiosk', false)
+	var noControls = urlParamToBool(urlParams, 'nocontrols', false) || isMobile()
+	
+	if (noControls && !kioskMode) {
 		$('#help-controls').css('display', 'none');
 	}
 	
@@ -199,7 +202,7 @@ $(document).ready(function () {
 	console.info('DEBUG', debugMode);
 	console.info('overlay', overlay);
 	console.info('animation', animation);
-		// remove unneeded nodes in kiosk mode	if (urlParamToBool(urlParams, 'kiosk', false)) {		$('#top-buttons').hide();		$('#help-controls').text('www.fotoadrianonicastro.it');	};	
+		// remove unneeded nodes in kiosk mode	if (kioskMode) {		$('#top-buttons').hide();		$('#help-controls').text('www.fotoadrianonicastro.it');	};	
 	$elmt = $("#content");
 
 	slides = [
@@ -359,7 +362,7 @@ $(document).ready(function () {
 		// make download button visible
 		$("#top-buttons #photo-download").addClass("icon-visible");
 	
-		if (idx != 0 && $('#help-controls').css('visibility') === 'hidden') {
+		if (idx != 0 && !noControls && $('#help-controls').css('visibility') === 'hidden') {
 			debug('show help controls');
 			$('#help-controls').css('visibility', 'initial').show().hide().fadeIn(3000); //css('visibility', 'initial');
 		}
