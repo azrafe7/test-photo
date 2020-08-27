@@ -174,6 +174,10 @@ $(document).ready(function () {
 		$('.site-branding, #footer, #top-buttons').css('display', 'none');
 	}
 	
+	if (urlParamToBool(urlParams, 'nocontrols', false) || isMobile()) {
+		$('#help-controls').css('display', 'none');
+	}
+	
 	debugMode = urlParamToBool(urlParams, 'debug', debugMode);
 	
 	// photo overlay & animations
