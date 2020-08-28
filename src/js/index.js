@@ -173,16 +173,16 @@ $(document).ready(function () {
 	if (urlParamToBool(urlParams, 'noui', false)) {
 		$('.site-branding, #footer, #top-buttons').css('display', 'none');
 	}
-	
+
 	var kioskMode = urlParamToBool(urlParams, 'kiosk', false)
-	var noControls = urlParamToBool(urlParams, 'nocontrols', false) || isMobile()
-	
+	var noControls = !urlParamToBool(urlParams, 'controls', false) || isMobile()
+
 	if (noControls && !kioskMode) {
 		$('#help-controls').css('display', 'none');
 	}
-	
+
 	debugMode = urlParamToBool(urlParams, 'debug', debugMode);
-	
+
 	// photo overlay & animations
 	var overlay = urlParamToBool(urlParams, 'overlay', false);
 	var kenburns = [
@@ -194,7 +194,7 @@ $(document).ready(function () {
 	var invertedKenburns = kenburns.map(function (name) { return name + '-in'; });
 	var randomAnimations = kenburns.concat(invertedKenburns);
 	var animation = urlParamToBool(urlParams, 'animation', false) ? randomAnimations : false;
-	
+
 	if (debugMode) {
 		debug = console.log.bind(window.console);
 	} else
@@ -202,7 +202,7 @@ $(document).ready(function () {
 	console.info('DEBUG', debugMode);
 	console.info('overlay', overlay);
 	console.info('animation', animation);
-		// remove unneeded nodes in kiosk mode	if (kioskMode) {		$('#top-buttons').hide();		$('#help-controls').text('www.fotoadrianonicastro.it');	};	
+	// remove unneeded nodes in kiosk mode	if (kioskMode) {		$('#top-buttons').hide();		$('#help-controls').text('www.fotoadrianonicastro.it');	};
 	$elmt = $("#content");
 
 	slides = [
@@ -249,7 +249,7 @@ $(document).ready(function () {
 	debug('shuffled', slides.map(function (item, i) {
 		return item.src.split('/').pop();
 	}));
-	
+
 	// vegas
 	$elmt.vegas({
 		delay: 7000,
@@ -266,10 +266,10 @@ $(document).ready(function () {
 		screenfull.toggle(this);
 		}*/
 	});
-	
+
 	// hide vegas timer if only 1 slide
 	if (slides.length <= 1) $(".vegas-timer").addClass("hidden");
-	
+
 	// toggle photo overlay
 	var $photoOverlay = $elmt.find('.vegas-overlay');
 	$photoOverlay.css('display', (overlay ? 'inline-block' : 'none'));
@@ -332,7 +332,7 @@ $(document).ready(function () {
 					debug("1st foto loaded", "idx: " + fromIdx);
 					$(".logo-anim").removeClass("spinner-double").addClass("pulsate");
 				}
-				
+
 				if (--cnt == 0) { // finished loading
 					// print calced palettes
 					if (usePalette && debugMode) {
@@ -356,12 +356,12 @@ $(document).ready(function () {
 	// set colors when changing slide
 	var firstSlideEver = true;
 	$elmt.vegas('options', 'animation', null); // no animation for first slide ever
-	
+
 	$elmt.vegas('options', 'walk', function (idx, slideSettings) {
 
 		// make download button visible
 		$("#top-buttons #photo-download").addClass("icon-visible");
-	
+
 		if (idx != 0 && !noControls && $('#help-controls').css('visibility') === 'hidden') {
 			debug('show help controls');
 			$('#help-controls').css('visibility', 'initial').show().hide().fadeIn(3000); //css('visibility', 'initial');
@@ -373,7 +373,7 @@ $(document).ready(function () {
 			$elmt.vegas('options', 'animation', animation);
 			firstSlideEver = false;
 		}
-		
+
 		var slide = slides[idx];		var filepath = slide.src.split('/');		var filename = filepath.pop();		filepath = filepath.join('/');		// help controls
 		$('#help-controls .slide-idx').text(idx + '/' + (slides.length - 1));
 		$('#help-controls .slide-name').text(':' + filename);
