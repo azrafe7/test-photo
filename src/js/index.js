@@ -174,8 +174,8 @@ $(document).ready(function () {
 		$('.site-branding, #footer, #top-buttons').css('display', 'none');
 	}
 
-	var kioskMode = urlParamToBool(urlParams, 'kiosk', false)
-	var noControls = !urlParamToBool(urlParams, 'controls', false) || isMobile()
+	var kioskMode = urlParamToBool(urlParams, 'kiosk', false);
+	var noControls = !urlParamToBool(urlParams, 'controls', false) || isMobile();
 
 	if (noControls && !kioskMode) {
 		$('#help-controls').css('display', 'none');
@@ -378,7 +378,7 @@ $(document).ready(function () {
       $fullscreenButton.hide();
     }
 
-		if (idx != 0 && !noControls && $('#help-controls').css('visibility') === 'hidden') {
+		if ((idx == 0 && kioskMode) || (idx != 0 && !noControls && $('#help-controls').css('visibility') === 'hidden')) {
 			debug('show help controls');
 			$('#help-controls').css('visibility', 'initial').show().hide().fadeIn(3000); //css('visibility', 'initial');
 		}
