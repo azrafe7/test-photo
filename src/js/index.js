@@ -267,6 +267,15 @@ $(document).ready(function () {
 		}*/
 	});
 
+  var $fullscreenButton = $("#top-buttons .fullscreen-toggle")
+  $fullscreenButton.on('click', function () { // full screen
+		if (document.fullscreen) {
+      document.exitFullscreen();
+		} else {
+      document.body.requestFullscreen();
+    }
+	});
+
 	// hide vegas timer if only 1 slide
 	if (slides.length <= 1) $(".vegas-timer").addClass("hidden");
 
@@ -361,6 +370,13 @@ $(document).ready(function () {
 
 		// make download button visible
 		$("#top-buttons #photo-download").addClass("icon-visible");
+
+		// make fullscreen button visible
+		if (document.fullscreen !== "undefined") {
+      $fullscreenButton.addClass("icon-visible");
+    } else {
+      $fullscreenButton.hide();
+    }
 
 		if (idx != 0 && !noControls && $('#help-controls').css('visibility') === 'hidden') {
 			debug('show help controls');
