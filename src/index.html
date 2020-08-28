@@ -138,6 +138,11 @@
 				map = new google.maps.Map(document.getElementById('map'), {
 					zoom: 17,
 					center: coords,
+					mapTypeControl: true,
+					mapTypeControlOptions: {
+						style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+						position: google.maps.ControlPosition.LEFT_BOTTOM,
+					},
 					/*mapTypeId: google.maps.MapTypeId.ROADMAP,
 					mapTypeControl: false,
 					zoomControl: true,
