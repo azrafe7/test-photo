@@ -28,32 +28,32 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
-		
+
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="icons/genericons.css">
 		<script src="js/jquery/jquery.min.js"></script>
-		
+
 		<title>Adriano Nicastro - photography</title>
-		
+
 		<!--[if lt IE 9]>
 		<script src="js/html5-shiv/html5shiv.min.js"></script>
 		<![endif]-->
 	</head>
 	<body>
-	
+
 		<img src="images/logo.png" class="hidden" />
 		<img src="icons/map-marker.png" class="hidden" />
-	
+
 		<!--[if lt IE 10]>
 		<div style="text-align: center" class="label label-important IE-warning">Stai usando una vecchia versione di Internet Explorer. Ti consigliamo di <a href="http://browser-update.org/update-browser.html">aggiornarlo o di scegliere un altro browser</a> per vedere correttamente questo sito.</div>
 		<![endif]-->
-		
+
 		<!--nav id="navigation">
 			<span id="left">prev</span>
 			<span id="fullscreen">full</span>
 			<span id="right">next</span>
 		</nav-->
-		
+
 		<div id="content">
 			<div id="play-state"></div>
 			<div class="site-branding">
@@ -62,7 +62,7 @@
 						<div class="logo-anim spinner-double"></div>
 					</div>
 				</div>
-				
+
 				<div class="menu overlay">
 					<h1 class="site-title"><a href="//fotoadrianonicastro.it" rel=
 					"home">ADRIANO NICASTRO</a></h1>
@@ -88,19 +88,23 @@
 						"https://www.youtube.com/channel/UCawzZ_wACxw4BZHA6aevC9w"><span class=
 						"screen-reader-text">Youtube</span></a></li>
 					</ul>
+					<div id="inmenu-info">
+						<div>Via G. Fortunato 16, 83043 Bagnoli Irpino (AV)</div>
+						<div>Cell. +39 328 625 6625</div>
+					</div>
 				</div> <!-- menu -->
 			</div><!-- .site-branding -->
-			
+
 			<div id="top-buttons">
 				<div id="photo-download" class="icon-button" title="Download foto (HQ)"></div>
 				<div class="map-toggle icon-button" title="Dove trovarmi"></div>
 			</div>
-			
+
 			<!--div id="palette" class="overlay">
 			</div-->
-		
+
 		</div>
-			
+
 		<link rel="stylesheet" href="js/vegas/vegas.min.css">
 		<script src="js/vegas/vegas.min.js"></script>
 		<!--script src="js/screenfull/screenfull.min.js"></script-->
@@ -110,7 +114,7 @@
 		<script src="js/filesaver/blob.js"></script>
 		<script src="js/filesaver/filesaver.min.js"></script>
 		<script src="js/index.js"></script>
-		
+
 		<!-- Map -->
 		<div class="hidden hidden-box">
 			<div id="infobox-content">
@@ -121,11 +125,11 @@
 				<div style="text-align:center"><a href="https://www.google.com/maps/d/u/0/viewer?mid=17nFl-FcJXNcTzJOqfh5ScC6Tgttwt9dF&ll=40.83399240000001%2C15.074486700000014&z=18" target="_blank">apri in Google Maps</a></div>
 			</div>
 		</div>
-		
+
 		<script>
 			var map;
 			var coords;
-			var infoBox; 
+			var infoBox;
 			function initMap(){
 				google.maps.visualRefresh = true;
 
@@ -143,7 +147,7 @@
 					rotateControl: false,
 					panControl: false*/
 				});
-				
+
 				var markerShape = {
 					coords: [0, 0, 48, 48],
 					type: 'rect'
@@ -189,25 +193,25 @@
 					$("#top-buttons .map-toggle").addClass("icon-visible");
 				});
 			}
-			
+
 			function recenterMap() {
 				console.log('map recenter');
 				google.maps.event.trigger(map, 'resize');
 				//map.setCenter(coords);
 				map.panTo(coords);
 			};
-			
+
 			window.addEventListener('resize', recenterMap);
 		</script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initMap"></script>
-		
+
 		<!-- Bottom Toggle -->
 		<div id="bottom-wrapper" class="offscreen-map">
 			<div id="footer" class="noselect">
 				<span id="help-controls">
-					<span class="key">◀</span><span>&nbsp;</span><span class="key">▶</span>:prev/next 
-					<span class="key">SPACE</span>:pause 
-					<span class="key">O</span>:overlay 
+					<span class="key">◀</span><span>&nbsp;</span><span class="key">▶</span>:prev/next
+					<span class="key">SPACE</span>:pause
+					<span class="key">O</span>:overlay
 					<span class="key">A</span>:animation
 					<span class="key">[</span><span class='key slide-idx'></span><span class="key">]</span><span class='slide-name'></span>
 				</span>
@@ -260,7 +264,6 @@
 			ga('create', 'UA-69228353-1', 'auto');
 			ga('send', 'pageview');
 			*/
-
 		</script>
 	</body>
 </html>
